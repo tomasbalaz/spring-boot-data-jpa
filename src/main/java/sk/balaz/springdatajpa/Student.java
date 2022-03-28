@@ -1,7 +1,13 @@
 package sk.balaz.springdatajpa;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity(name = "Student")
 public class Student {
 
+    @Id
     private Long id;
 
     private String firstName;
