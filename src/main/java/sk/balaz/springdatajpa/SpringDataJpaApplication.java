@@ -24,6 +24,13 @@ public class SpringDataJpaApplication {
                     21
             );
 
+            Student maria2 = new Student(
+                    "Maria",
+                    "Jones",
+                    "maria2.jones@amigoscode.edu",
+                    25
+            );
+
             Student ahmed = new Student(
                     "Ahmed",
                     "Ali",
@@ -32,32 +39,21 @@ public class SpringDataJpaApplication {
             );
 
             System.out.println("Adding Maria and Ahmed");
-            studentRepository.saveAll(List.of(maria, ahmed));
+            studentRepository.saveAll(List.of(maria, maria2, ahmed));
 
-            System.out.println("Number od students: ");
-            System.out.println(studentRepository.count());
+            studentRepository.findStudentByEmail("ahmed.ali@amigoscode.edu")
+                    .ifPresentOrElse(System.out::println, () -> System.out.println("Student with email ahmed.ali@amigoscode.edu not found"));
 
-            studentRepository
-                    .findById(2L)
-                    .ifPresentOrElse(
-                            System.out::println,
-                            () -> System.out.println("Student with ID 2 not found"));
+            studentRepository.findStudentByFirstNameEqualsAndAgeEquals(
+                    "Maria",
+                    21
+            ).forEach(System.out::println);
 
-            studentRepository
-                    .findById(3L)
-                    .ifPresentOrElse(
-                            System.out::println,
-                            () -> System.out.println("Student with ID 3 not found"));
+            studentRepository.findStudentByFirstNameEqualsAndAgeGreaterThan(
+                    "Maria",
+                    18
+            ).forEach(System.out::println);
 
-            System.out.println("Select all students");
-            List<Student> students = studentRepository.findAll();
-            students.forEach(System.out::println);
-
-            System.out.println("delete maria");
-            studentRepository.deleteById(1L);
-
-            System.out.println("Number od students: ");
-            System.out.println(studentRepository.count());
         };
     }
 
