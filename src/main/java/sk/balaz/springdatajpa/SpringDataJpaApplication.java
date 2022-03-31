@@ -59,6 +59,10 @@ public class SpringDataJpaApplication {
                     18
             ).forEach(System.out::println);
 
+            System.out.println("Deleting Maria 2");
+            int i = studentRepository.deleteStudentById(3L);
+            System.out.println(i);
+
         };
     }
 
