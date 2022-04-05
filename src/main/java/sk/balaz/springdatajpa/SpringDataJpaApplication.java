@@ -17,9 +17,29 @@ public class SpringDataJpaApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(StudentRepository studentRepository) {
+    CommandLineRunner commandLineRunner(
+            StudentRepository studentRepository,
+            StudentIdCardRepository studentIdCardRepository) {
         return args -> {
 
+            Faker faker = new Faker();
+
+            String firstName = faker.name().firstName();
+            String lastName = faker.name().lastName();
+            int age = faker.number().numberBetween(17, 55);
+            Student student = new Student(
+                    firstName,
+                    lastName,
+                    String.format("%s.%s@email.edu", firstName, lastName),
+                    age);
+
+            StudentIdCard studentIdCard = new StudentIdCard(
+                    "1234567890",
+                    student);
+            studentIdCardRepository.save(studentIdCard);
+
+            studentIdCardRepository.findById(1L)
+                    .ifPresent(System.out::println);
         };
     }
 
