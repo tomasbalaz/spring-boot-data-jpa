@@ -7,10 +7,10 @@ import javax.persistence.*;
         name = "student_id_card",
         uniqueConstraints = {
                 @UniqueConstraint(
-                        name = "student_id_card_nuber_unique",
-                        columnNames = "card_number")
+                        name = "student_id_card_number_unique",
+                        columnNames = "card_number"
+                )
         }
-
 )
 public class StudentIdCard {
 

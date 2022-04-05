@@ -20,20 +20,6 @@ public class SpringDataJpaApplication {
     CommandLineRunner commandLineRunner(StudentRepository studentRepository) {
         return args -> {
 
-            Faker faker = new Faker();
-
-            generateRandomStudents(studentRepository, faker);
-
-            sortStudents(studentRepository);
-
-            PageRequest pageRequest = PageRequest.of(
-                    0,
-                    5,
-                    Sort.by("firstName").ascending());
-
-            Page<Student> page = studentRepository.findAll(pageRequest);
-
-            System.out.println(page);
         };
     }
 
