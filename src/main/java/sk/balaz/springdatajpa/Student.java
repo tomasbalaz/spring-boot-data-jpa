@@ -55,6 +55,13 @@ public class Student {
     )
     private Integer age;
 
+    @OneToOne(mappedBy = "student")
+    private StudentIdCard studentIdCard;
+
+    public StudentIdCard getStudentIdCard() {
+        return studentIdCard;
+    }
+
     public Student(String firstName,
                    String lastName,
                    String email, Integer age) {
