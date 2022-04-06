@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import java.time.LocalDateTime;
+
 @SpringBootApplication
 public class SpringDataJpaApplication {
 
@@ -36,15 +38,28 @@ public class SpringDataJpaApplication {
             StudentIdCard studentIdCard = new StudentIdCard(
                     "1234567890",
                     student);
+
+            student.addBook(
+                    new Book("Clean code",
+                    LocalDateTime.now().minusDays(4)));
+
+            student.addBook(
+                    new Book("Think and Grow Rich",
+                            LocalDateTime.now()));
+
+            student.addBook(
+                    new Book("Spring Data JPA",
+                            LocalDateTime.now().minusYears(4)));
+
             studentIdCardRepository.save(studentIdCard);
 
-            studentRepository.findById(1L)
-                    .ifPresent(System.out::println);
-
-            studentIdCardRepository.findById(1L)
-                    .ifPresent(System.out::println);
-
-            studentRepository.deleteById(1L);
+//            studentRepository.findById(1L)
+//                    .ifPresent(System.out::println);
+//
+//            studentIdCardRepository.findById(1L)
+//                    .ifPresent(System.out::println);
+//
+//            studentRepository.deleteById(1L);
         };
     }
 
