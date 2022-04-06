@@ -1,6 +1,8 @@
 package sk.balaz.springdatajpa;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Student")
 @Table(
@@ -61,6 +63,13 @@ public class Student {
     )
     private StudentIdCard studentIdCard;
 
+    @OneToMany(
+            mappedBy = "student",
+            orphanRemoval = true,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+    )
+    private final List<Book> books = new ArrayList<>();
+
     public StudentIdCard getStudentIdCard() {
         return studentIdCard;
     }
@@ -102,6 +111,14 @@ public class Student {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -110,8 +127,18 @@ public class Student {
         this.age = age;
     }
 
-    public String getEmail() {
-        return email;
+    public void addBook(Book book) {
+        if(!this.books.contains(book)) {
+            this.books.add(book);
+            book.setStudent(this);
+        }
+    }
+
+    public void removeBook(Book book) {
+        if(this.books.contains(book)) {
+            this.books.remove(book);
+            book.setStudent(null);
+        }
     }
 
     @Override
