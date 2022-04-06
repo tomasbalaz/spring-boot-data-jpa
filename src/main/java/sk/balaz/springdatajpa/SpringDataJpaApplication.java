@@ -43,6 +43,8 @@ public class SpringDataJpaApplication {
 
             studentIdCardRepository.findById(1L)
                     .ifPresent(System.out::println);
+
+            studentRepository.deleteById(1L);
         };
     }
 
