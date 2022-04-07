@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootApplication
 public class SpringDataJpaApplication {
@@ -53,9 +54,16 @@ public class SpringDataJpaApplication {
 
             studentIdCardRepository.save(studentIdCard);
 
-//            studentRepository.findById(1L)
-//                    .ifPresent(System.out::println);
-//
+            studentRepository.findById(1L)
+                    .ifPresent(s -> {
+                        System.out.println("fetch books lazy...");
+                        List<Book> books = student.getBooks();
+                        books.forEach(book -> {
+                            System.out.println(
+                                    s.getFirstName() + " borrowed " + book.getBookName());
+                        });
+                    });
+
 //            studentIdCardRepository.findById(1L)
 //                    .ifPresent(System.out::println);
 //

@@ -66,7 +66,8 @@ public class Student {
     @OneToMany(
             mappedBy = "student",
             orphanRemoval = true,
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch = FetchType.LAZY
     )
     private final List<Book> books = new ArrayList<>();
 
@@ -139,6 +140,10 @@ public class Student {
             this.books.remove(book);
             book.setStudent(null);
         }
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 
     @Override
