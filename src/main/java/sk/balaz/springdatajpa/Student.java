@@ -59,7 +59,8 @@ public class Student {
 
     @OneToOne(
             mappedBy = "student",
-            orphanRemoval = true
+            orphanRemoval = true,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
     )
     private StudentIdCard studentIdCard;
 
@@ -70,6 +71,10 @@ public class Student {
             fetch = FetchType.LAZY
     )
     private final List<Book> books = new ArrayList<>();
+
+    public void setStudentIdCard(StudentIdCard studentIdCard) {
+        this.studentIdCard = studentIdCard;
+    }
 
     public StudentIdCard getStudentIdCard() {
         return studentIdCard;

@@ -21,8 +21,7 @@ public class SpringDataJpaApplication {
 
     @Bean
     CommandLineRunner commandLineRunner(
-            StudentRepository studentRepository,
-            StudentIdCardRepository studentIdCardRepository) {
+            StudentRepository studentRepository) {
         return args -> {
 
             Faker faker = new Faker();
@@ -52,16 +51,16 @@ public class SpringDataJpaApplication {
                     new Book("Spring Data JPA",
                             LocalDateTime.now().minusYears(4)));
 
-            studentIdCardRepository.save(studentIdCard);
+            student.setStudentIdCard(studentIdCard);
+
+            studentRepository.save(student);
 
             studentRepository.findById(1L)
                     .ifPresent(s -> {
                         System.out.println("fetch books lazy...");
                         List<Book> books = student.getBooks();
-                        books.forEach(book -> {
-                            System.out.println(
-                                    s.getFirstName() + " borrowed " + book.getBookName());
-                        });
+                        books.forEach(book -> System.out.println(
+                                s.getFirstName() + " borrowed " + book.getBookName()));
                     });
 
 //            studentIdCardRepository.findById(1L)
