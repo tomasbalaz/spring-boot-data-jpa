@@ -171,7 +171,15 @@ public class Student {
         return courses;
     }
 
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.getStudents().add(this);
+    }
 
+    public void removeCourse(Course course) {
+        courses.remove(course);
+        course.getStudents().remove(this);
+    }
 
     @Override
     public String toString() {
