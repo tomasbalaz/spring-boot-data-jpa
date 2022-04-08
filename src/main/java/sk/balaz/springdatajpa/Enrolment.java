@@ -12,12 +12,22 @@ public class Enrolment {
 
     @ManyToOne
     @MapsId("studentId")
-    @JoinColumn(name = "student_id")
+    @JoinColumn(
+            name = "student_id",
+            foreignKey = @ForeignKey(
+                    name = "enrolment_student_id_fk"
+            )
+    )
     private Student student;
 
     @ManyToOne
     @MapsId("courseId")
-    @JoinColumn(name = "course_id")
+    @JoinColumn(
+            name = "course_id",
+            foreignKey = @ForeignKey(
+                    name = "enrolment_course_id_fk"
+            )
+    )
     private Course course;
 
     @Column(
