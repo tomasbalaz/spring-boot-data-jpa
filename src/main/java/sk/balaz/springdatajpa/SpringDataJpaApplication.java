@@ -55,11 +55,15 @@ public class SpringDataJpaApplication {
 
             student.addEnrolment(new Enrolment(
                     new EnrolmentId(1L, 1L),
-                    student, new Course("Computer Science", "IT")));
+                    student,
+                    new Course("Computer Science", "IT"),
+                    LocalDateTime.now()));
 
             student.addEnrolment(new Enrolment(
                     new EnrolmentId(1L, 2L),
-                    student, new Course("Spring Data JPA", "IT")));
+                    student,
+                    new Course("Spring Data JPA", "IT"),
+                    LocalDateTime.now()));
 
 //            student.addCourse(new Course("Computer Science", "IT"));
 //
