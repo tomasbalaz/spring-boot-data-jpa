@@ -53,6 +53,10 @@ public class SpringDataJpaApplication {
 
             student.setStudentIdCard(studentIdCard);
 
+            student.addCourse(new Course("Computer Science", "IT"));
+
+            student.addCourse(new Course("Amigoscode", "IT"));
+
             studentRepository.save(student);
 
             studentRepository.findById(1L)
