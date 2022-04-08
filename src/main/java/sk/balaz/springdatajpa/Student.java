@@ -70,7 +70,7 @@ public class Student {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.LAZY
     )
-    private final List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     @ManyToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
@@ -86,7 +86,7 @@ public class Student {
                     foreignKey = @ForeignKey(name = "course_course_id_fk")
             )
     )
-    private final List<Course> courses = new ArrayList<>();
+    private List<Course> courses = new ArrayList<>();
 
     public void setStudentIdCard(StudentIdCard studentIdCard) {
         this.studentIdCard = studentIdCard;
@@ -166,6 +166,12 @@ public class Student {
     public List<Book> getBooks() {
         return books;
     }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+
 
     @Override
     public String toString() {
