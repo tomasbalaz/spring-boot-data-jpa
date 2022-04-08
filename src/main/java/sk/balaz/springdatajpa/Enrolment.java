@@ -3,7 +3,7 @@ package sk.balaz.springdatajpa;
 import javax.persistence.*;
 
 @Entity(name = "Enrolment")
-@Table("enrolment")
+@Table(name = "enrolment")
 public class Enrolment {
 
     @EmbeddedId
@@ -23,6 +23,11 @@ public class Enrolment {
     }
 
     public Enrolment(Student student, Course course) {
+        this(null, student, course);
+    }
+
+    public Enrolment(EnrolmentId id, Student student, Course course) {
+        this.id = id;
         this.student = student;
         this.course = course;
     }

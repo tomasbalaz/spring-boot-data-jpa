@@ -53,9 +53,17 @@ public class SpringDataJpaApplication {
 
             student.setStudentIdCard(studentIdCard);
 
-            student.addCourse(new Course("Computer Science", "IT"));
+            student.addEnrolment(new Enrolment(
+                    new EnrolmentId(1L, 1L),
+                    student, new Course("Computer Science", "IT")));
 
-            student.addCourse(new Course("Amigoscode", "IT"));
+            student.addEnrolment(new Enrolment(
+                    new EnrolmentId(1L, 2L),
+                    student, new Course("Spring Data JPA", "IT")));
+
+//            student.addCourse(new Course("Computer Science", "IT"));
+//
+//            student.addCourse(new Course("Spring Data JPA", "IT"));
 
             studentRepository.save(student);
 
